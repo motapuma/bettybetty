@@ -1,0 +1,27 @@
+<h1>Listing key_words</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @key_words.each do |key_word| %>
+      <tr>
+        <td><%= key_word.word %></td>
+        <td><%= key_word.type %></td>
+        <td><%= link_to 'Show', key_word %></td>
+        <td><%= link_to 'Edit', edit_key_word_path(key_word) %></td>
+        <td><%= link_to 'Destroy', key_word, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Key word', new_key_word_path %>

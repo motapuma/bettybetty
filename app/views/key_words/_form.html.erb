@@ -1,0 +1,25 @@
+<%= form_for(@key_word) do |f| %>
+  <% if @key_word.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@key_word.errors.count, "error") %> prohibited this key_word from being saved:</h2>
+
+      <ul>
+      <% @key_word.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :word %><br>
+    <%= f.text_field :word %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.number_field :type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
