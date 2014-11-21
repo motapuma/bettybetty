@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :relations
+
+  resources :nicknames
+
   resources :relation_types
 
   resources :key_words

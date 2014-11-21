@@ -15,6 +15,14 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <% @relation_type.key_words.each do |kw| %>
+    <%=kw.word%><br />
+  <%end%>
+
+  <%= f.fields_for :key_words,@relation_type.key_words.build do |kw|%>
+    <%= f.label :word %><%= kw.text_field :word%> 
+  <%end%>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Candidate:</strong>
+  <%= @nickname.candidate_id %>
+</p>
+
+<p>
+  <strong>Ally:</strong>
+  <%= @nickname.ally_id %>
+</p>
+
+<p>
+  <strong>Nick:</strong>
+  <%= @nickname.nick %>
+</p>
+
+<%= link_to 'Edit', edit_nickname_path(@nickname) %> |
+<%= link_to 'Back', nicknames_path %>

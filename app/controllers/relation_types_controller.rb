@@ -69,6 +69,6 @@ class RelationTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def relation_type_params
-      params.require(:relation_type).permit(:name)
+      params.require(:relation_type).permit(:name,key_words_attributes:[:word])
     end
 end

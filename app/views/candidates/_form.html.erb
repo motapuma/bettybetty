@@ -15,6 +15,15 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <b>NickNames:</b>
+  <% @candidate.nicknames.each do |nn| %>
+    <%=nn.nick%><br />
+  <%end%>
+  <%= f.fields_for :nicknames,@candidate.nicknames.build do |nn|%>
+    <%= f.label :nick %><%= nn.text_field :nick%>
+  <%end%>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

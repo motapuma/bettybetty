@@ -1,0 +1,1 @@
+RELATION_TYPES = ["Familia","Delincuencia y Faltas","Mal Uso de Recursos", "Disciplina","Administración"]

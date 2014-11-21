@@ -11,9 +11,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20141121044723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "allies", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "candidates", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "key_words", force: true do |t|
+    t.string   "word"
+    t.integer  "relation_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "key_words_relations", id: false, force: true do |t|
+    t.integer "key_word_id"
+    t.integer "relation_id"
+  end
+
+  create_table "links", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "journal"
+    t.string   "author"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "nicknames", force: true do |t|
+    t.integer  "candidate_id"
+    t.integer  "ally_id"
+    t.string   "nick"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relation_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relations", force: true do |t|
+    t.integer  "link_id"
+    t.integer  "ally_id"
+    t.integer  "candidate_id"
+    t.integer  "relation_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

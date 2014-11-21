@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  link_id: 1
+  ally_id: 1
+  candidate_id: 1
+  relation_type_id: 1
+
+two:
+  link_id: 1
+  ally_id: 1
+  candidate_id: 1
+  relation_type_id: 1

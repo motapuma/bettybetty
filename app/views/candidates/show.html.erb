@@ -3,6 +3,12 @@
 <p>
   <strong>Name:</strong>
   <%= @candidate.name %>
+  <br />
+  <strong>NickNames:</strong><br />
+  <% @candidate.nicknames.each do |nn| %>
+  	<%=nn.nick%><br />
+  <%end%>
+
 </p>
 
 <%= link_to 'Edit', edit_candidate_path(@candidate) %> |

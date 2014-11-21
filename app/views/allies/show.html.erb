@@ -2,7 +2,11 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @ally.name %>
+  <%= @ally.name %><br />
+  <strong>NickNames:</strong><br />
+  <% @ally.nicknames.each do |nn| %>
+  	<%=nn.nick%><br />
+  <%end%>
 </p>
 
 <%= link_to 'Edit', edit_ally_path(@ally) %> |

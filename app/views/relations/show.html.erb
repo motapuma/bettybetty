@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @relation.link_id %>
+</p>
+
+<p>
+  <strong>Ally:</strong>
+  <%= @relation.ally_id %>
+</p>
+
+<p>
+  <strong>Candidate:</strong>
+  <%= @relation.candidate_id %>
+</p>
+
+<p>
+  <strong>Relation type:</strong>
+  <%= @relation.relation_type_id %>
+</p>
+
+<%= link_to 'Edit', edit_relation_path(@relation) %> |
+<%= link_to 'Back', relations_path %>
