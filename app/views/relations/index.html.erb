@@ -14,10 +14,10 @@
   <tbody>
     <% @relations.each do |relation| %>
       <tr>
-        <td><%= relation.link_id %></td>
-        <td><%= relation.ally_id %></td>
-        <td><%= relation.candidate_id %></td>
-        <td><%= relation.relation_type_id %></td>
+        <td><%= relation.link_st %></td>
+        <td><%= relation.ally_st %></td>
+        <td><%= relation.candidate_st %></td>
+        <td><%= relation.relation_type_st %></td>
         <td><%= link_to 'Show', relation %></td>
         <td><%= link_to 'Edit', edit_relation_path(relation) %></td>
         <td><%= link_to 'Destroy', relation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

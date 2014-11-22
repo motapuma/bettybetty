@@ -11,13 +11,14 @@ Rails.application.routes.draw do
 
   resources :allies
 
+
   resources :candidates
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'welcome#index'
+   root 'relations#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -27,6 +28,8 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  match 'link_suggestions', to: 'relations#suggest', via: [:get, :post]
 
   # Example resource route with options:
   #   resources :products do

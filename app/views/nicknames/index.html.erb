@@ -13,8 +13,8 @@
   <tbody>
     <% @nicknames.each do |nickname| %>
       <tr>
-        <td><%= nickname.candidate_id %></td>
-        <td><%= nickname.ally_id %></td>
+        <td><%= nickname.candidate_st %></td>
+        <td><%= nickname.ally_st %></td>
         <td><%= nickname.nick %></td>
         <td><%= link_to 'Show', nickname %></td>
         <td><%= link_to 'Edit', edit_nickname_path(nickname) %></td>

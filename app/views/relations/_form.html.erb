@@ -12,22 +12,35 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :link_id %><br>
-    <%= f.number_field :link_id %>
+    <%#= f.label :link_id %><!-- <br> -->
+    <%#= f.number_field :link_id %>
+
+    <%= f.fields_for :link,@relation.build_link do |nn|%>
+      <%= nn.label :title %><%= nn.text_field :title%>
+      <%= nn.label :content %><%= nn.text_area :content%>
+      <%= nn.label :journal %><%= nn.select :journal,JOURNALS.each_with_index.map{ |val, i| [ val[0], i ]  } %>
+      <%= nn.label :author %><%= nn.text_field :author %>
+      <%= nn.label :url %><%= nn.text_field :url %>
+
+    <%end%>
+
   </div>
   <div class="field">
-    <%= f.label :ally_id %><br>
-    <%= f.number_field :ally_id %>
-  </div>
-  <div class="field">
-    <%= f.label :candidate_id %><br>
-    <%= f.number_field :candidate_id %>
-  </div>
-  <div class="field">
-    <%= f.label :relation_type_id %><br>
-    <%= f.number_field :relation_type_id %>
+    <%= f.label :ally_id %>
+    <%=f.select(:ally_id, Ally.all.collect {|w| [ w.name, w.id ] })%>
+    <%= f.label :candidate_id %>
+    <%=f.select(:candidate_id, Candidate.all.collect {|w| [ w.name, w.id ] })%>
+    <%= f.label :relation_type_id %>
+    <%=f.select(:relation_type_id, RelationType.all.collect {|w| [ w.name, w.id ] })%>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+
+  <%=button_tag(type: 'button', id: "askSuggestions") do
+    content_tag(:strong, 'Sugerir Links')
+  end%>
+  <div id="toAdd">
+  </div>
+
 <% end %>

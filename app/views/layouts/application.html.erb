@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<nav>
+  <%=link_to 'Candidatos', candidates_path%>|
+  <%=link_to 'Aliados',    allies_path%>|
+  <%=link_to 'Relaciones', relations_path%>|
+  <%=link_to 'Tipo de Relaciones', relation_types_path%>|
+  <%=link_to 'nicknames', nicknames_path%>|
+</nav>
+
 <%= yield %>
 
 </body>

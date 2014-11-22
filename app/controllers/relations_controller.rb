@@ -61,6 +61,28 @@ class RelationsController < ApplicationController
     end
   end
 
+  def suggest
+    journal_number   = params[:journal_number].to_i
+    candidate_id     = params[:candidate_id].to_i
+    relation_type_id = params[:relation_type_id].to_i
+    ally_id          = params[:ally_id].to_i
+
+    journal_url = JOURNALS[journal_number][1]
+
+    candidate      = Candidate.find(candidate_id)
+    cand_nicknames = candidate.nicknames.to_a
+
+    relation_type  = RelationType.find(relation_type_id)
+    key_words      = relation_type.key_words.to_a
+
+    ally           = Ally.find(ally_id)
+    ally_nicknames = ally.nicknames.to_a
+
+
+    render :text => BettySugestions.new.suggestions_for(journal_url,cand_nicknames,key_words,ally_nicknames) 
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_relation
@@ -69,6 +91,6 @@ class RelationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def relation_params
-      params.require(:relation).permit(:link_id, :ally_id, :candidate_id, :relation_type_id)
+      params.require(:relation).permit(:link_id, :ally_id, :candidate_id, :relation_type_id,link_attributes: [:title,:content,:journal,:author,:url])
     end
 end

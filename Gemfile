@@ -39,4 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails_12factor'
+gem 'pry'
+gem 'mechanize'
+gem 'nokogiri'
 
