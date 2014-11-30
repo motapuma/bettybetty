@@ -28,7 +28,7 @@ class RelationsController < ApplicationController
 
     respond_to do |format|
       if @relation.save
-        format.html { redirect_to @relation, notice: 'Relation was successfully created.' }
+        format.html { redirect_to edit_relation_path(@relation), notice: 'Relation was successfully created.' }
         format.json { render :show, status: :created, location: @relation }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class RelationsController < ApplicationController
   def update
     respond_to do |format|
       if @relation.update(relation_params)
-        format.html { redirect_to @relation, notice: 'Relation was successfully updated.' }
+        format.html { redirect_to edit_relation_path(@relation), notice: 'Relation was successfully updated.' }
         format.json { render :show, status: :ok, location: @relation }
       else
         format.html { render :edit }

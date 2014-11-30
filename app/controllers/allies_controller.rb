@@ -28,7 +28,7 @@ class AlliesController < ApplicationController
 
     respond_to do |format|
       if @ally.save
-        format.html { redirect_to @ally, notice: 'Ally was successfully created.' }
+        format.html { redirect_to edit_ally_path(@ally), notice: 'Ally was successfully created.' }
         format.json { render :show, status: :created, location: @ally }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AlliesController < ApplicationController
   def update
     respond_to do |format|
       if @ally.update(ally_params)
-        format.html { redirect_to @ally, notice: 'Ally was successfully updated.' }
+        format.html { redirect_to edit_ally_path(@ally), notice: 'Ally was successfully updated.' }
         format.json { render :show, status: :ok, location: @ally }
       else
         format.html { render :edit }

@@ -12,20 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, "Nombre" %><br>
     <%= f.text_field :name %>
   </div>
   
   <b>NickNames:</b><br />
-  <% @ally.nicknames.each do |nn| %>
-    <%=nn.nick%><br />
-  <%end%>
+  <ul>
+      <% @ally.nicknames.each do |nn| %>
+        <li>
+          <%=nn.nick%>
+         </li> 
+      <%end%>
+  </ul>
+  
 
   <%= f.fields_for :nicknames,@ally.nicknames.build do |nn|%>
     <%= f.label :nick %><%= nn.text_field :nick%>
   <%end%>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Actualizar" %>
   </div>
 <% end %>

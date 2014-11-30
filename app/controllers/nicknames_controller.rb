@@ -29,7 +29,7 @@ class NicknamesController < ApplicationController
     respond_to do |format|
       if @nickname.save
         format.html { redirect_to @nickname, notice: 'Nickname was successfully created.' }
-        format.json { render :show, status: :created, location: @nickname }
+        format.json { render :edit, status: :created, location: @nickname }
       else
         format.html { render :new }
         format.json { render json: @nickname.errors, status: :unprocessable_entity }
@@ -43,7 +43,7 @@ class NicknamesController < ApplicationController
     respond_to do |format|
       if @nickname.update(nickname_params)
         format.html { redirect_to @nickname, notice: 'Nickname was successfully updated.' }
-        format.json { render :show, status: :ok, location: @nickname }
+        format.json { render :edit, status: :ok, location: @nickname }
       else
         format.html { render :edit }
         format.json { render json: @nickname.errors, status: :unprocessable_entity }

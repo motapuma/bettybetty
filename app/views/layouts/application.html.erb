@@ -7,16 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div id="header" class="skel-layers-fixed">
+		<div class="top">
+			<div id="logo">
+				
+				<h1 id="title">Betty Betty</h1>
+			</div>
+			<nav id ="nav">
+				<ul>
 
-<nav>
-  <%=link_to 'Candidatos', candidates_path%>|
-  <%=link_to 'Aliados',    allies_path%>|
-  <%=link_to 'Relaciones', relations_path%>|
-  <%=link_to 'Tipo de Relaciones', relation_types_path%>|
-  <%=link_to 'nicknames', nicknames_path%>|
-</nav>
+				<li><%=link_to '<span class="icon fa-home"></span>  Home'.html_safe, relations_path%></li>
+				  <li><%=link_to '<span class="icon fa-user"></span>  Candidatos'.html_safe, candidates_path%></li>
+				  <li><%=link_to '<span class="icon fa-user"></span> Aliados'.html_safe,    allies_path%></li>
+				  <li><%=link_to '<span class="icon fa-th-large"></span> Vínculos'.html_safe, new_relation_path%></li>
+				  <li><%=link_to '<span class="icon fa-th-large"></span> Tipo de Relaciones'.html_safe, relation_types_path%></li>
+				 
+				  <!-- <li><%#=link_to 'Tipos de Relaciones', relation_types_path%></li>
+				  <li><%#=link_to 'Nicknames', nicknames_path%></li> -->
+			  </ul>
+			</nav>
+		</div>
+		<div class="bottom">
+		</div>
+	</div>
 
-<%= yield %>
+	
+<div id="main">
+	<%= yield %>
+</div>
 
 </body>
 </html>

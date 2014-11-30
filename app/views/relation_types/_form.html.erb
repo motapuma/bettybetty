@@ -12,18 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name,class: "inputCentered",placeholder:"Tipo de Relación" %>
   </div>
-  <% @relation_type.key_words.each do |kw| %>
-    <%=kw.word%><br />
-  <%end%>
+  <b>Palabras Clave</b>
+  <ul>
+    <% @relation_type.key_words.each do |kw| %>
+      <li>
+          <%=kw.word%><br />
+      </li>
+    <%end%>
+  </ul>
 
   <%= f.fields_for :key_words,@relation_type.key_words.build do |kw|%>
-    <%= f.label :word %><%= kw.text_field :word%> 
+    <%= kw.text_field :word,placeholder:"Palabra Clave",class: "inputCentered" %> 
   <%end%>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Agregar" %>
   </div>
 <% end %>

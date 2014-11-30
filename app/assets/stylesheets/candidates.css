@@ -1,0 +1,17 @@
+button.espButton
+{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 25px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 300;
+	width:273px;
+	height:82px;
+	font-size: 25px;
+
+}
+input.inputCentered
+{
+	text-align:center; 
+}
+

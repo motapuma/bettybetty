@@ -10,36 +10,55 @@
       </ul>
     </div>
   <% end %>
+       
+        <%= f.fields_for :link,@relation.build_link do |nn|%>
+              <div class="row">
+                  <div class="6u">
+                    <%= nn.text_field :title,placeholder:"Título"%>
+                  </div>
+                  <div class="6u">
+                    <%= nn.select :journal,JOURNALS.each_with_index.map{ |val, i| [ val[0], i ]  },:include_blank => "Periódico" %>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="6u">
+                      <%= nn.text_field :author,placeholder:"Autor" %>
+                  </div>
+                  <div class="6u">
+                      <%= nn.text_field :url,placeholder:"URL" %>
+                  </div>
+              </div>
 
-  <div class="field">
-    <%#= f.label :link_id %><!-- <br> -->
-    <%#= f.number_field :link_id %>
+              <div class="row">
+                  <div class="4u">
+                      <%=f.select(:candidate_id, Candidate.all.collect {|w| [ w.name, w.id ] },:include_blank => "Candidato")%>
+                  </div>
+                  <div class="4u">
+                      <%=f.select(:ally_id, Ally.all.collect {|w| [ w.name, w.id ] },:include_blank => "Aliado")%>
+                  </div>
+                  <div class="4u">
+                      <%=f.select(:relation_type_id, RelationType.all.collect {|w| [ w.name, w.id ] },:include_blank => "Tipo de Relación")%>
+                  </div>
+              </div>
 
-    <%= f.fields_for :link,@relation.build_link do |nn|%>
-      <%= nn.label :title %><%= nn.text_field :title%>
-      <%= nn.label :content %><%= nn.text_area :content%>
-      <%= nn.label :journal %><%= nn.select :journal,JOURNALS.each_with_index.map{ |val, i| [ val[0], i ]  } %>
-      <%= nn.label :author %><%= nn.text_field :author %>
-      <%= nn.label :url %><%= nn.text_field :url %>
+              <div class="row">
+                  <div class="12u">
+                    <%= nn.text_area :content,placeholder:"Contenido"%>
+                  </div>
+              </div>
+              
+        <%end%>
 
-    <%end%>
+        <div class="actions">
 
-  </div>
-  <div class="field">
-    <%= f.label :ally_id %>
-    <%=f.select(:ally_id, Ally.all.collect {|w| [ w.name, w.id ] })%>
-    <%= f.label :candidate_id %>
-    <%=f.select(:candidate_id, Candidate.all.collect {|w| [ w.name, w.id ] })%>
-    <%= f.label :relation_type_id %>
-    <%=f.select(:relation_type_id, RelationType.all.collect {|w| [ w.name, w.id ] })%>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+          <%= f.submit "Crear Vínculo" %>
+          <%=button_tag(type: 'button', id: "askSuggestions",class: "button scrolly espButton") do
+            content_tag(:strong, 'Sug. Vínculo')
+          end%>
+          
+        </div>
 
-  <%=button_tag(type: 'button', id: "askSuggestions") do
-    content_tag(:strong, 'Sugerir Links')
-  end%>
+    
   <div id="toAdd">
   </div>
 
