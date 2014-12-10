@@ -56,8 +56,6 @@ $( document ).ready(function() {
 var acceptNotice = function(caller)
 {
 
-  alert("holi mensi");
-  alert(caller);
   tr = $(caller).parents("tr");
 
   art_text   = tr.children("td.art_text").html();
