@@ -1,0 +1,13 @@
+{	
+	"nodes":[
+		{"name":"Margarita Arellanes","group":1},
+		{"name":"Juan Peréz",         "group":0},
+		{"name":"Chapo Guzman",       "group":0}
+		
+	],
+
+	"links":[
+		{"source":0,"target":1,"value":20},
+    	{"source":0,"target":2,"value":20}
+	]
+}

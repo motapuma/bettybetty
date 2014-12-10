@@ -52,14 +52,21 @@
         <div class="actions">
 
           <%= f.submit "Crear Vínculo" %>
+
           <%=button_tag(type: 'button', id: "askSuggestions",class: "button scrolly espButton") do
             content_tag(:strong, 'Sug. Vínculo')
           end%>
           
         </div>
 
-    
-  <div id="toAdd">
-  </div>
-
 <% end %>
+  <table id="toAdd">
+    <tr>
+      <td class="art_title">Titulo noticia</td>
+      <td class="art_link"><a href="www.eluniversal.com">link</a></td>
+      <td class="art_searchtxt">Margarita Pepe</td>
+      <td class="art_button"><button id="but" onclick="acceptNotice(this)">Correcto</button></td>
+      <td class="art_text" style="display:none;">ten amo arturo ay segun sme xae gordo pero noooo</td>
+    </tr>
+  </table>
+  <%=render "modal"%>

@@ -42,4 +42,5 @@ gem 'rails_12factor'
 gem 'pry'
 gem 'mechanize'
 gem 'nokogiri'
+gem 'paperclip'
 

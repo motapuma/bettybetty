@@ -62,12 +62,12 @@ class BettySugestions
 
 			notice = Notice.new(correct_link(link),correct_title(titulo),correct_text(texto),"")
 			
-			arr << notice.to_json if notice
+			arr << notice.to_hash
 
 
 		end
 
-		arr.to_json
+		return arr.to_json
 
 	end
 
@@ -92,8 +92,9 @@ class BettySugestions
 						journal_form.q = search_text
 
 						query_result = mechanize_agent.submit journal_form
-
+						next if query_result.nil?
 						column         = query_result.search("div[@id='IzqDisplayColumn']").first
+						next if column.nil?
 						links          = column.search("div[@class='HeadNota']").children.search("a")
 						external_links = external_links.concat(get_external_links(links) )
 

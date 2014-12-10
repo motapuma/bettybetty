@@ -1,4 +1,5 @@
 class RelationsController < ApplicationController
+  include ActionView::Helpers::TagHelper
   before_action :set_relation, only: [:show, :edit, :update, :destroy]
 
   # GET /relations
@@ -62,24 +63,56 @@ class RelationsController < ApplicationController
   end
 
   def suggest
+    error = nil
+
     journal_number   = params[:journal_number].to_i
     candidate_id     = params[:candidate_id].to_i
     relation_type_id = params[:relation_type_id].to_i
     ally_id          = params[:ally_id].to_i
 
-    journal_url = JOURNALS[journal_number][1]
+    error = "ERROR: Selecciona un candidato."        if !Candidate.exists?(candidate_id)
+    error = "ERROR: Selecciona un tipo de relación." if !RelationType.exists?(relation_type_id)  
+    error = "ERROR: Selecciona un Aliado."           if !Ally.exists?(ally_id)
 
-    candidate      = Candidate.find(candidate_id)
-    cand_nicknames = candidate.nicknames.to_a
+    
+    if !error.nil?
+      render :text => error 
+    else
+      
+      journal_url    = JOURNALS[journal_number][1]
+      candidate      = Candidate.find(candidate_id)
+      cand_nicknames = candidate.nicknames.to_a
 
-    relation_type  = RelationType.find(relation_type_id)
-    key_words      = relation_type.key_words.to_a
+      relation_type  = RelationType.find(relation_type_id)
+      key_words      = relation_type.key_words.to_a
 
-    ally           = Ally.find(ally_id)
-    ally_nicknames = ally.nicknames.to_a
+      ally           = Ally.find(ally_id)
+      ally_nicknames = ally.nicknames.to_a
 
+      json = BettySugestions.new.suggestions_for(journal_url,cand_nicknames,key_words,ally_nicknames) 
 
-    render :text => BettySugestions.new.suggestions_for(journal_url,cand_nicknames,key_words,ally_nicknames) 
+      # begin
+        
+        # rows = ""
+
+        # array.each do |notice|
+        #     td1  = ""# content_tag(:td,notice.article_text).html_safe
+        #     td2  = content_tag(:td,notice.article_title).html_safe
+        #     td3  = content_tag(:td,notice.link).html_safe
+        #     td4  = content_tag(:td,notice.search_text).html_safe
+        #     rows = rows + content_tag(:tr,td1 + td2 + td3 + td4)
+        # end
+
+        # res = content_tag(:table,rows.html_safe)
+        render :text => json
+
+      # rescue ActiveSupport::JSON.parse_error
+      #   Rails.logger.warn("Attempted to decode invalid JSON: #{json}")
+      #   render :text => "Error!"
+      # end
+
+      
+    end
 
   end
 

@@ -56,7 +56,7 @@ class NicknamesController < ApplicationController
   def destroy
     @nickname.destroy
     respond_to do |format|
-      format.html { redirect_to nicknames_url, notice: 'Nickname was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Nickname was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

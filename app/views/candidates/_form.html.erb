@@ -20,7 +20,7 @@
       <ul>
         <% @candidate.nicknames.each do |nn| %>
           <li>
-            <%=nn.nick%>
+            <%=nn.nick%>&nbsp<%= link_to '<span class="icon fa-remove"></span>'.html_safe, nn, method: :delete, data: { confirm: 'Are you sure?' } %>
           </li>
         <%end%>
       </ul>
@@ -29,6 +29,9 @@
         <%= f.label :nick, "Nuevo Nickname" %><%= nn.text_field :nick%>
       <%end%>
 
+
+      <%=image_tag @candidate.avatar.url,height: '200', width: '200'%>
+      <%= f.file_field :avatar %>
 
       <div class="actions">
         <%= f.submit "Actualizar" %>

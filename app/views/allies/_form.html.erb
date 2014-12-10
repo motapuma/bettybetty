@@ -20,7 +20,7 @@
   <ul>
       <% @ally.nicknames.each do |nn| %>
         <li>
-          <%=nn.nick%>
+          <%=nn.nick%>&nbsp<%= link_to '<span class="icon fa-remove"></span>'.html_safe, nn, method: :delete, data: { confirm: 'Are you sure?' }%>
          </li> 
       <%end%>
   </ul>
@@ -29,6 +29,10 @@
   <%= f.fields_for :nicknames,@ally.nicknames.build do |nn|%>
     <%= f.label :nick %><%= nn.text_field :nick%>
   <%end%>
+
+  <%=image_tag @ally.avatar.url,height: '200', width: '200'%>
+  <%= f.file_field :avatar %>
+  
 
   <div class="actions">
     <%= f.submit "Actualizar" %>

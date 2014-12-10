@@ -1,4 +1,8 @@
 class Ally < ActiveRecord::Base
+	
+	has_attached_file :avatar
+	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+	
 	has_many :nicknames
 	accepts_nested_attributes_for :nicknames, :allow_destroy => true
 
