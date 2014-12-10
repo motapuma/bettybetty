@@ -69,6 +69,6 @@ class AlliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ally_params
-      params.require(:ally).permit(:name,nicknames_attributes: [:nick],:avatar)
+      params.require(:ally).permit(:name,:avatar,nicknames_attributes: [:nick])
     end
 end
