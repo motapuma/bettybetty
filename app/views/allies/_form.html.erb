@@ -1,40 +1,51 @@
-<%= form_for(@ally) do |f| %>
-  <% if @ally.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ally.errors.count, "error") %> prohibited this ally from being saved:</h2>
+<div class="formdiv" align= "center">
+    <%= form_for(@ally) do |f| %>
+      <% if @ally.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@ally.errors.count, "error") %> prohibited this ally from being saved:</h2>
 
-      <ul>
-      <% @ally.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @ally.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
+
+      <div class="field">
+        <%= f.label :name, "Nombre" %><br>
+        <%= f.text_field :name %>
+      </div>
+      
+      <b>NickNames:</b><br />
+      <ul>
+          <% @ally.nicknames.each do |nn| %>
+            <li>
+              <%=nn.nick%>&nbsp<%= link_to '<span class="icon fa-remove"></span>'.html_safe, nn, method: :delete, data: { confirm: 'Are you sure?' }%>
+             </li> 
+          <%end%>
       </ul>
-    </div>
-  <% end %>
+      
 
-  <div class="field">
-    <%= f.label :name, "Nombre" %><br>
-    <%= f.text_field :name %>
-  </div>
-  
-  <b>NickNames:</b><br />
-  <ul>
-      <% @ally.nicknames.each do |nn| %>
-        <li>
-          <%=nn.nick%>&nbsp<%= link_to '<span class="icon fa-remove"></span>'.html_safe, nn, method: :delete, data: { confirm: 'Are you sure?' }%>
-         </li> 
+      <%= f.fields_for :nicknames,@ally.nicknames.build do |nn|%>
+        <%= f.label :nick %><%= nn.text_field :nick%>
       <%end%>
-  </ul>
-  
 
-  <%= f.fields_for :nicknames,@ally.nicknames.build do |nn|%>
-    <%= f.label :nick %><%= nn.text_field :nick%>
-  <%end%>
 
-  <%=image_tag @ally.avatar.url,height: '200', width: '200'%>
-  <%= f.file_field :avatar %>
-  
+      <% @ally.all_especial_links.each do |el| %>
+        <%= el.url.to_s %>
+      <%end%>
+      
+      <%= f.fields_for :all_especial_links,@ally.all_especial_links.build do |form_link|%>
+          <%= f.label :nick, "Nuevo Link" %><%= form_link.text_field :url%> <%=form_link.file_field :pdf%>         
+      <%end%>
 
-  <div class="actions">
-    <%= f.submit "Actualizar" %>
-  </div>
-<% end %>
+      <%=image_tag @ally.avatar.url,height: '200', width: '200'%>
+      <%= f.file_field :avatar %>
+      
+
+      <div class="actions">
+        <%= f.submit "Actualizar" %>
+      </div>
+    <% end %>
+</div>

@@ -29,6 +29,13 @@
         <%= f.label :nick, "Nuevo Nickname" %><%= nn.text_field :nick%>
       <%end%>
 
+      <% @candidate.can_especial_links.each do |el| %>
+        <%= el.url.to_s %>
+      <%end%>
+      
+      <%= f.fields_for :can_especial_links,@candidate.can_especial_links.build do |form_link|%>
+          <%= f.label :nick, "Nuevo Link" %><%= form_link.text_field :url%> <%=form_link.file_field :pdf%>         
+      <%end%>
 
       <%=image_tag @candidate.avatar.url,height: '200', width: '200'%>
       <%= f.file_field :avatar %>

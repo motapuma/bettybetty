@@ -42,6 +42,7 @@ class AlliesController < ApplicationController
   def update
     respond_to do |format|
       if @ally.update(ally_params)
+        #binding.pry
         format.html { redirect_to edit_ally_path(@ally), notice: 'Ally was successfully updated.' }
         format.json { render :show, status: :ok, location: @ally }
       else
@@ -69,6 +70,6 @@ class AlliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ally_params
-      params.require(:ally).permit(:name,:avatar,nicknames_attributes: [:nick])
+      params.require(:ally).permit(:name,:avatar,all_especial_links_attributes:[:url,:pdf],nicknames_attributes: [:nick])
     end
 end
