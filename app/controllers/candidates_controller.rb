@@ -42,7 +42,6 @@ class CandidatesController < ApplicationController
   def update
     respond_to do |format|
       if @candidate.update(candidate_params)
-        #binding.pry
         format.html { redirect_to edit_candidate_path(@candidate), notice: 'Candidate was successfully updated.' }
         format.json { render :edit, status: :ok, location: @candidate }
       else
@@ -70,6 +69,6 @@ class CandidatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def candidate_params
-      params.require(:candidate).permit(:name,:avatar,can_especial_links_attributes:[:url,:pdf],nicknames_attributes: [:nick,:candidate_id])
+      params.require(:candidate).permit(:name,:avatar,nicknames_attributes: [:nick,:candidate_id])
     end
 end

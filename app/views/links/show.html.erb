@@ -7,7 +7,7 @@
 
 <p>
   <strong>Text:</strong>
-  <%#= @link.text %>
+  <%= @link.text %>
 </p>
 
 <p>
@@ -25,9 +25,5 @@
   <%= @link.url %>
 </p>
 
-<p>
-  <strong>pdf:</strong>
-  <%= @link.pdf %>
-</p>
 <%= link_to 'Edit', edit_link_path(@link) %> |
 <%= link_to 'Back', links_path %>
